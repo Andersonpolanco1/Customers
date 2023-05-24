@@ -1,0 +1,92 @@
+<h5 class="mt-4">CUSTOMER ADDRESSES</h5>
+<hr>
+
+<div class="card my-4 text-left">
+  <div style="background-color: #2199e8; color: aliceblue;" class="card-header">
+    <b>Customer</b>
+  </div>
+  <div class="card-body">
+    <div *ngIf="customer">
+      <div class="w-50">
+          <div class="row">
+            <div class="col">
+              <span class="fw-bold">Name:</span>
+            </div>
+            <div class="col">
+              <span> {{customer.name | uppercase}}</span>
+            </div>
+          </div>
+    
+          <div class="row">
+              <div class="col">
+                  <span class="fw-bold">Lastname: </span>
+              </div>
+              <div class="col">
+                  <span>{{customer.lastname | uppercase}}</span>
+              </div>
+            </div>
+    
+            <div class="row">
+              <div class="col">
+                  <span class="fw-bold">Email </span>
+              </div>
+              <div class="col">
+                  <span>{{customer.email | uppercase}}</span>
+              </div>
+            </div>
+    
+            <div class="row">
+              <div class="col">
+                  <span class="fw-bold">Phone: </span>
+              </div>
+              <div class="col">
+                  <span>{{customer.phone | uppercase}}</span>
+              </div>
+            </div>
+      </div>
+    </div> 
+  </div>
+</div>
+
+<div class="card my-4 text-left">
+  <div style="background-color: #2199e8; color: aliceblue;" class="card-header">
+    <b>Addresses</b>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped w-100">
+      <thead>
+        <tr>
+          <th>Country</th>
+          <th>City</th>
+          <th>Neighborhood</th>
+          <th>Streets</th>
+          <th>Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let address of addressess | paginate: { itemsPerPage: 6, currentPage: p}">
+          <td>{{ address.countryName }}</td>
+          <td>{{ address.cityName }}</td>
+          <td>{{ address.neighborhoodName }}</td>
+          <td>{{ address.street }}</td>
+          <td>{{ address.number }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer text-muted">
+    <div class="w-100 d-flex">
+      <div class="w-75 d-flex justify">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+      <div class="w-25">{{total}} records </div>
+  </div>
+  </div>
+</div>
+
+
+
+<div>
+    <button type="button" class="btn btn-outline-primary rounded-pill" (click)="goBack()">Back</button>
+</div>
+

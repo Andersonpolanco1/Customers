@@ -1,0 +1,44 @@
+<h5 class="mt-4">CUSTOMERS</h5>
+<hr>
+
+<div class="card text-left">
+  <div style="background-color: #2199e8; color: aliceblue;" class="card-header">
+    <b>CUSTOMERS</b>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped w-100">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Lastname</th>
+          <th>Gender</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let customer of customers | paginate: { itemsPerPage: 6, currentPage: p, totalItems: total}">
+          <td>{{ customer.id }}</td>
+          <td>{{ customer.name }}</td>
+          <td>{{ customer.lastname }}</td>
+          <td>{{ customer.gender }}</td>
+          <td>{{ customer.email }}</td>
+          <td>{{ customer.phone }}</td>
+          <td>
+              <a routerLink="/customers/{{customer.id}}/addresses">addresses</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>
+  <div class="card-footer text-muted">
+    <div class="w-100 d-flex">
+      <div class="w-75 d-flex justify">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+      <div class="w-25">{{total}} records </div>
+  </div>
+</div>
