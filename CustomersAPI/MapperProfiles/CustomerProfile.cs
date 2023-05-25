@@ -9,7 +9,8 @@ namespace CustomersAPI.MapperProfiles
         public CustomerProfile()
         {
             CreateMap<CustomerCreateDto, Customer>();
-            CreateMap<Customer, CustomerReadDto>();
+            CreateMap<Customer, CustomerReadDto>()
+                .ForMember(src => src.Gender, dest => dest.MapFrom(src => src.Gender == Gender.Male ? "Male" : "Female" ));
         }
     }
 }

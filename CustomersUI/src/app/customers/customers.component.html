@@ -1,5 +1,6 @@
 <h5 class="mt-4">CUSTOMERS</h5>
 <hr>
+<div class="my-3"><a href="#">Add new customer</a></div>
 
 <div class="card text-left">
   <div style="background-color: #2199e8; color: aliceblue;" class="card-header">
@@ -27,7 +28,7 @@
           <td>{{ customer.email }}</td>
           <td>{{ customer.phone }}</td>
           <td>
-              <a routerLink="/customers/{{customer.id}}/addresses">addresses</a>
+              <a routerLink="/customers/{{customer.id}}/addresses">view</a>
           </td>
         </tr>
       </tbody>

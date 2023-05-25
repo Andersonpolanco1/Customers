@@ -10,6 +10,7 @@ using CustomersAPI.Models;
 using CustomersAPI.Models.DTOs.CustomerDtos;
 using CustomersAPI.Models.DTOs.CityDtos;
 using AutoMapper;
+using CustomersAPI.Models.DTOs.AddressDto;
 
 namespace CustomersAPI.Controllers
 {
@@ -37,6 +38,36 @@ namespace CustomersAPI.Controllers
             var customers = await _context.Customers.ToListAsync();
             return Ok(_mapper.Map<IEnumerable<Customer>,IEnumerable<CustomerReadDto>>(customers));   
         }
+
+        // GET: api/Customers/5/addresses
+        [HttpGet("{id}/Addresses")]
+        public async Task<ActionResult<AddressReadDto>> GetCustomerAddresses(int id)
+        {
+            if (_context.Customers == null)
+            {
+                return NotFound();
+            }
+
+            var addresses = await _context.Addresses
+                .Include(a => a.Neighborhood)
+                .ThenInclude(n => n.City)
+                .ThenInclude(c => c.Country)
+                .Where(a => a.CustomerId == id)
+                .Select(a => new AddressReadDto
+                {
+                    CustomerId = a.CustomerId,
+                    NeighborhoodName = a.Neighborhood.Description,
+                    CityName = a.Neighborhood.City.Description,
+                    CountryName = a.Neighborhood.City.Country.Description,
+                    Number = a.Number,
+                    Street = a.Street,
+                    Observations = a.Observations
+                }).ToListAsync();
+
+            return Ok(addresses is null ? new List<AddressReadDto>() : addresses);
+
+        }
+
 
         // GET: api/Customers/5
         [HttpGet("{id}")]

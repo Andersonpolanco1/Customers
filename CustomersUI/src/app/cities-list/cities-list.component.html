@@ -1,0 +1,39 @@
+<h5 class="mt-4">CITIES</h5>
+<hr>
+
+<div class="my-3"><a href="#">Add new city</a></div>
+
+<div class="card text-left">
+  <div style="background-color: #2199e8; color: aliceblue;" class="card-header">
+    <b>CITIES</b>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped w-100">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Description</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let city of cities | paginate: { itemsPerPage: 6, currentPage: p, totalItems: total}">
+          <td>{{ city.id }}</td>
+          <td>{{ city.description }}</td>
+          <td>
+              <a routerLink="/cities{{city.id}}">view</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>
+  <div class="card-footer text-muted">
+    <div class="w-100 d-flex">
+      <div class="w-75 d-flex justify">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+      <div class="w-25">{{total}} records </div>
+  </div>
+</div>
+

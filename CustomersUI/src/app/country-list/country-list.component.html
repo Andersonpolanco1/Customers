@@ -1,0 +1,38 @@
+<h5 class="mt-4">COUNTRIES</h5>
+<hr>
+
+<div class="my-3"><a href="#">Add new country</a></div>
+
+<div class="card text-left">
+  <div style="background-color: #2199e8; color: aliceblue;" class="card-header">
+    <b>COUNTRIES</b>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped w-100">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Description</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let country of countries | paginate: { itemsPerPage: 6, currentPage: p, totalItems: total}">
+          <td>{{ country.id }}</td>
+          <td>{{ country.description }}</td>
+          <td>
+              <a routerLink="/countries{{country.id}}">view</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>
+  <div class="card-footer text-muted">
+    <div class="w-100 d-flex">
+      <div class="w-75 d-flex justify">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+      <div class="w-25">{{total}} records </div>
+  </div>
+</div>

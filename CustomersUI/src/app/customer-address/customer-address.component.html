@@ -1,13 +1,15 @@
 <h5 class="mt-4">CUSTOMER ADDRESSES</h5>
 <hr>
 
+<div class=""><a href="#">Edit customer</a></div>
+
 <div class="card my-4 text-left">
   <div style="background-color: #2199e8; color: aliceblue;" class="card-header">
     <b>Customer</b>
   </div>
   <div class="card-body">
-    <div *ngIf="customer">
-      <div class="w-50">
+      <div *ngIf="customer">
+          <div class="w-50">
           <div class="row">
             <div class="col">
               <span class="fw-bold">Name:</span>
@@ -48,6 +50,9 @@
   </div>
 </div>
 
+<div class="my-3"><a href="#">Add new address</a></div>
+
+
 <div class="card my-4 text-left">
   <div style="background-color: #2199e8; color: aliceblue;" class="card-header">
     <b>Addresses</b>
@@ -61,6 +66,7 @@
           <th>Neighborhood</th>
           <th>Streets</th>
           <th>Number</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -70,6 +76,9 @@
           <td>{{ address.neighborhoodName }}</td>
           <td>{{ address.street }}</td>
           <td>{{ address.number }}</td>
+          <td>
+            <a routerLink="/addresses{{address}}">view</a>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -83,8 +92,6 @@
   </div>
   </div>
 </div>
-
-
 
 <div>
     <button type="button" class="btn btn-outline-primary rounded-pill" (click)="goBack()">Back</button>

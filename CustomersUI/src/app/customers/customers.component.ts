@@ -9,7 +9,7 @@ import { CustomersService } from '../services/customers.service';
 })
 export class CustomersComponent {
 
-  title = 'Lista de contribuyentes';
+  title = 'Customers list';
   customers: Customer[] = [];
   p: number = 1;
   total: number = 0;
