@@ -1,6 +1,6 @@
 ﻿namespace CustomersAPI.Models
 {
-    public enum Gender { Male, Female}
+    public enum Gender { Female, Male}
 
     public class Customer : BaseModel
     {
